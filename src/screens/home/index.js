@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import {
+    Alert,
     SafeAreaView,
     View,
     TouchableOpacity,
@@ -7,8 +8,7 @@ import {
     ScrollView
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-
-import { db, getEstabelecimentos } from '../../global/config/firebase';
+import firestore from '@react-native-firebase/firestore';
 
 const Home = () => {
 
@@ -21,13 +21,32 @@ const Home = () => {
     }, []);
 
     const loadEstabelecimentos = () => {
-        getEstabelecimentos(db).then((list) => {
-            console.log(list)
-        })
     }
 
     const onPressItem = () => {
         navigate("Estabelecimento");
+    }
+
+    const onPressCriarConta = () => {
+        firestore()
+            .collection("estabelecimentos")
+            .add({
+                capa: "",
+                img: "",
+                nome: "Empório do Pescado",
+                created_at: firestore.FieldValue.serverTimestamp(),
+                produtos: [
+                    {
+                        nome: "Tilápia",
+                        quantidade: "1000",
+                        valor: "40.00",
+                    }
+                ]
+            })
+            .then(() => {
+                Alert.alert("Cadastro", " Cadastrado com sucesso");
+            })
+            .catch((err) => console.log(err));
     }
 
     function categorias() {
@@ -99,11 +118,13 @@ const Home = () => {
                     justifyContent: "center",
                     backgroundColor: "white"
                 }}>
-                    <Text
-                        style={{
-                            fontSize: 14
-                        }}
-                    >Categorias</Text>
+                    <TouchableOpacity onPress={onPressCriarConta}>
+                        <Text
+                            style={{
+                                fontSize: 14
+                            }}
+                        >Categorias</Text>
+                    </TouchableOpacity>
                 </View>
                 <ScrollView
                     style={{ backgroundColor: "white" }}
