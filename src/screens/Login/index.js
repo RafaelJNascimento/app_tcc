@@ -26,7 +26,6 @@ const Login = () => {
             then(() => {
                 setLogin("");
                 setSenha("");
-                navigate("Home");
             }).catch((e) => {
                 Alert.alert(
                     "Erro",
