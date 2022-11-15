@@ -7,9 +7,10 @@ import {
     SafeAreaView,
     View,
     Text,
-    TextInput,
     TouchableOpacity
 } from 'react-native';
+
+import OutlineTextField from '../../global/components/OutlineTextField';
 
 const Login = () => {
 
@@ -32,17 +33,6 @@ const Login = () => {
                     "Verifique suas credenciais e tente novamente"
                 );
             });
-
-    }
-
-    const forgotPassword = () => {
-        auth().
-            sendPasswordResetEmail(login).
-            then(() => {
-                Alert.alert(
-                    "Redefinir senha",
-                    "Enviamos um e-mail, para você!");
-            });
     }
 
     const onPressCreateAcount = () => {
@@ -51,85 +41,84 @@ const Login = () => {
 
 
     return (
-        <SafeAreaView style={{ flex: 1 }}>
+        <SafeAreaView style={{ flex: 1, backgroundColor: "#fff", }}>
             <View style={{ flex: 1 }}>
                 <View style={{
                     width: 350,
-                    height: 180,
+                    height: 240,
                     marginTop: "30%",
                     alignSelf: 'center',
                 }}>
                     <Text
                         style={{
-                            margin: 10,
+                            fontSize: 35,
+                            fontWeight: 'bold',
+                            letterSpacing: -1.5,
+                            textAlign: 'center'
                         }}
-                    >Login</Text>
-                    <TextInput
-                        style={{
-                            width: "98%",
-                            alignSelf: "center",
-                            height: 40,
-                            borderWidth: 1,
-                            paddingHorizontal: 5,
-                        }}
+                    >Bem Vindo</Text>
+                    <View
+                        style={{ padding: 24 }}
+                    />
+                    <OutlineTextField
+                        label={'Email'}
                         value={login}
                         onChangeText={setLogin}
                     />
-                    <Text
+                    <View
                         style={{
                             margin: 10,
                         }}
-                    >Senha</Text>
-                    <TextInput
-                        style={{
-                            width: "98%",
-                            alignSelf: "center",
-                            height: 40,
-                            paddingHorizontal: 5,
-                            borderWidth: 1,
-                        }}
-                        secureTextEntry
+                    />
+                    <OutlineTextField
+                        label={'Senha'}
                         value={senha}
                         onChangeText={setSenha}
                     />
                 </View>
-                <TouchableOpacity
-                    onPress={CreateNewAcount}
-                    style={{
-                        width: "50%",
-                        marginBottom: 10,
-                        alignSelf: "center",
-                        height: 40,
-                        borderWidth: 1,
-                        alignItems: "center",
-                        justifyContent: "center",
-                    }}>
-                    <Text>Login</Text>
-                </TouchableOpacity>
+                <View style={{
+                    width: 350,
+                    height: 85,
+                    alignSelf: 'center',
+                }}>
+                    <TouchableOpacity
+                        onPress={CreateNewAcount}
+                        style={{
+                            width: "98%",
+                            marginBottom: 5,
+                            alignSelf: "center",
+                            height: 50,
+                            alignItems: "center",
+                            justifyContent: "center",
+                            backgroundColor: "red",
+                            borderRadius: 4
+                        }}>
+                        <Text
+                            style={{
+                                fontSize: 20,
+                                color: "#fff",
+                                fontWeight: "bold",
+                            }}
+                        >Login</Text>
+                    </TouchableOpacity>
+                </View>
                 <TouchableOpacity
                     onPress={onPressCreateAcount}
                     style={{
-                        width: "50%",
+                        width: "100%",
                         marginBottom: 10,
                         marginBottom: 10,
                         alignSelf: "center",
                         height: 40,
-                        borderWidth: 1,
                         alignItems: "center",
                         justifyContent: "center",
                     }}>
-                    <Text>Criar Conta</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                    onPress={forgotPassword}
+                    <Text
                     style={{
-                        width: "50%",
-                        alignSelf: "center",
-                        height: 40,
-                        alignItems: "center",
-                        justifyContent: "center",
-                    }}>
-                    <Text>Esqueci a senha</Text>
+                        color: "red",
+                        fontWeight: "bold",
+                    }}
+                    >Ainda não tem conta? Cadastre-se agora.</Text>
                 </TouchableOpacity>
             </View>
         </SafeAreaView>

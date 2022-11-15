@@ -33,6 +33,7 @@ target 'app_tcc' do
 
   target 'app_tccTests' do
     inherit! :complete
+    pod 'FirebaseFirestore', :git => 'https://github.com/invertase/firestore-ios-sdk-frameworks.git', :tag => '9.6.0'
     # Pods for testing
   end
 

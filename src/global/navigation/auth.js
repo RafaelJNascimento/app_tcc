@@ -12,10 +12,12 @@ function App() {
             <Stack.Screen
                 name="Login"
                 component={Login}
+                options={{ headerShown: false }}
             />
             <Stack.Screen
                 name="CriarConta"
                 component={CriarConta}
+                options={{ headerShown: false }}
             />
         </Stack.Navigator>
     );

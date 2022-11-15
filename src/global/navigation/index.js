@@ -5,10 +5,7 @@ import {
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import auth from '@react-native-firebase/auth';
 
-import Home from '../../screens/home';
-import Carrinho from '../../screens/carrinho';
-import ConcluirPedido from '../../screens/concluirPedido';
-import Estabelecimento from '../../screens/estabelecimento';
+import Home from '../../screens/Home';
 
 const logoutImg = require('../assets/img/logout.png');
 
@@ -41,18 +38,6 @@ function App() {
                         </TouchableOpacity>
                     )
                 }}
-            />
-            <Stack.Screen
-                name="Estabelecimento"
-                component={Estabelecimento}
-            />
-            <Stack.Screen
-                name="Carrinho"
-                component={Carrinho}
-            />
-            <Stack.Screen
-                name="ConcluirPedido"
-                component={ConcluirPedido}
             />
         </Stack.Navigator>
     );

@@ -7,16 +7,16 @@ import {
     SafeAreaView,
     View,
     Text,
-    TextInput,
     TouchableOpacity
 } from 'react-native';
 
-// import { Container } from './styles';
+import OutlineTextField from '../../global/components/OutlineTextField';
 
 const CriarConta = () => {
 
     const {
-        navigate
+        navigate,
+        goBack,
     } = useNavigation();
 
     const [login, setLogin] = useState('');
@@ -35,59 +35,90 @@ const CriarConta = () => {
 
     }
 
-
     return (
-        <SafeAreaView style={{ flex: 1 }}>
-            <View style={{ flex: 1 }}>
+        <SafeAreaView
+            style={{
+                flex: 1,
+                backgroundColor: "#fff",
+            }}>
+            <View
+                style={{
+                    flex: 1,
+                }}>
                 <View style={{
                     width: 350,
-                    height: 180,
+                    height: 240,
                     marginTop: "30%",
                     alignSelf: 'center',
                 }}>
                     <Text
                         style={{
-                            margin: 10,
+                            fontSize: 35,
+                            fontWeight: 'bold',
+                            letterSpacing: -1.5,
+                            textAlign: 'center'
                         }}
-                    >Login</Text>
-                    <TextInput
-                        style={{
-                            width: "98%",
-                            alignSelf: "center",
-                            height: 40,
-                            borderWidth: 1,
-                        }}
+                    >Crie sua conta</Text>
+                    <View
+                        style={{ padding: 24 }}
+                    />
+                    <OutlineTextField
+                        label={'Email'}
                         value={login}
                         onChangeText={setLogin}
                     />
-                    <Text
-                        style={{
-                            margin: 10,
-                        }}
-                    >Senha</Text>
-                    <TextInput
-                        style={{
-                            width: "98%",
-                            alignSelf: "center",
-                            height: 40,
-                            borderWidth: 1,
-                        }}
-                        secureTextEntry
+                    <View
+                        style={{ padding: 10 }}
+                    />
+                    <OutlineTextField
+                        label={'Senha'}
                         value={senha}
                         onChangeText={setSenha}
                     />
                 </View>
+                <View style={{
+                    width: 350,
+                    height: 85,
+                    alignSelf: 'center',
+                }}>
+                    <TouchableOpacity
+                        onPress={CreateNewAcount}
+                        style={{
+                            width: "98%",
+                            marginBottom: 5,
+                            alignSelf: "center",
+                            height: 50,
+                            alignItems: "center",
+                            justifyContent: "center",
+                            backgroundColor: "red",
+                            borderRadius: 4,
+                        }}>
+                        <Text
+                            style={{
+                                fontSize: 20,
+                                color: "#fff",
+                                fontWeight: "bold",
+                            }}
+                        >Cadastrar</Text>
+                    </TouchableOpacity>
+                </View>
                 <TouchableOpacity
-                    onPress={CreateNewAcount}
+                    onPress={() => goBack()}
                     style={{
-                        width: "50%",
+                        width: "100%",
+                        marginBottom: 10,
+                        marginBottom: 10,
                         alignSelf: "center",
                         height: 40,
-                        borderWidth: 1,
                         alignItems: "center",
                         justifyContent: "center",
                     }}>
-                    <Text>Cadastrar</Text>
+                    <Text
+                        style={{
+                            color: "red",
+                            fontWeight: "bold",
+                        }}
+                    >Volte ao login.</Text>
                 </TouchableOpacity>
             </View>
         </SafeAreaView>
